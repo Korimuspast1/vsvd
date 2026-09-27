@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AchievementData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/achievements/AchievementData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "signal_collector"
+display_name = "Signal Collector"
+description = "Process 10 signals."
+icon_path = ""
+hidden = false
+target_stat = ""
+target_value = 1.0

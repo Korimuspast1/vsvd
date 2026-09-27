@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SignalData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/signals/SignalData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "golden_archive"
+display_name = "Golden Archive"
+object_type = "Special"
+quality = "Very High"
+frequency_band = "Very High"
+base_price = 100
+rarity = "legendary"
+min_day = 1
+unique = true
+altitude_bands = Array[int]([20, 50, 100, 500, 1000])
+target_frequency = 0.883
+target_polarity = 0.935
+spectrogram_path = ""
+audio_path = ""
+decoded_text = "Special-case signal entry. Replace with authored spectrogram/audio."
+lore_tags = Array[String](["special"])

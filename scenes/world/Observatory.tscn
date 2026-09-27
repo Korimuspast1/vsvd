@@ -1,0 +1,54 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/equipment/MainComputer.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/equipment/CoordinatePanel.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/equipment/Detector.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/equipment/BreakerPanel.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/equipment/Bed.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://scenes/equipment/Radio.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://scenes/equipment/Dish.tscn" id="7"]
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(24, 0.2, 18)
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(24, 0.2, 18)
+[sub_resource type="BoxMesh" id="WallMesh"]
+size = Vector3(24, 3, 0.25)
+[sub_resource type="BoxShape3D" id="WallShape"]
+size = Vector3(24, 3, 0.25)
+
+[node name="Observatory" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("FloorMesh")
+[node name="Collision" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("FloorShape")
+
+[node name="BackWall" type="StaticBody3D" parent="."]
+position = Vector3(0, 1.5, 9)
+[node name="Mesh" type="MeshInstance3D" parent="BackWall"]
+mesh = SubResource("WallMesh")
+[node name="Collision" type="CollisionShape3D" parent="BackWall"]
+shape = SubResource("WallShape")
+
+[node name="MainComputer" parent="." instance=ExtResource("1")]
+position = Vector3(-3, 0.7, -4)
+
+[node name="CoordinatePanel" parent="." instance=ExtResource("2")]
+position = Vector3(1, 0.7, -4)
+
+[node name="Detector" parent="." instance=ExtResource("3")]
+position = Vector3(4, 0.7, -4)
+
+[node name="BreakerPanel" parent="." instance=ExtResource("4")]
+position = Vector3(-8, 0.8, 6)
+
+[node name="Bed" parent="." instance=ExtResource("5")]
+position = Vector3(7, 0.5, 4)
+
+[node name="Radio" parent="." instance=ExtResource("6")]
+position = Vector3(5.5, 0.8, 4)
+
+[node name="Dish1" parent="." instance=ExtResource("7")]
+position = Vector3(-12, 1, -12)
+scale = Vector3(2.5, 2.5, 2.5)

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EmailData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/emails/EmailData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "how_to_scan_for_signals"
+sender = "HQ"
+subject = "How to Scan for Signals"
+category = "Tutorial"
+delivery_day = 1
+delivery_minute = 540
+body = "Tutorial message: How to Scan for Signals. This placeholder should be replaced with original authored text before release."
+attachments = Array[String]([])

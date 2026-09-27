@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EmailData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/emails/EmailData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "scan"
+sender = "HQ"
+subject = "How to Scan"
+category = "Tutorial"
+delivery_day = 1
+delivery_minute = 540
+body = "Choose an altitude band, press Scan, then tune the detector."
+attachments = Array[String]([])

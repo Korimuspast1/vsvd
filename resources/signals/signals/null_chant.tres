@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SignalData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/signals/SignalData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "null_chant"
+display_name = "Null Chant"
+object_type = "Null Signal"
+quality = "Unknown"
+frequency_band = "Unknown"
+base_price = 20
+rarity = "legendary"
+min_day = 20
+unique = false
+altitude_bands = Array[int]([500, 1000])
+target_frequency = 0.840
+target_polarity = -0.726
+spectrogram_path = ""
+audio_path = ""
+decoded_text = "The decoded payload is mostly empty space. The gaps feel intentional."
+lore_tags = Array[String](["null", "void"])

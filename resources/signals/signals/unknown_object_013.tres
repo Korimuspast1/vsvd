@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SignalData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/signals/SignalData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "unknown_object_013"
+display_name = "Unknown Object 013"
+object_type = "Unknown"
+quality = "Unknown"
+frequency_band = "Unknown"
+base_price = 10
+rarity = "rare"
+min_day = 1
+unique = false
+altitude_bands = Array[int]([100, 500, 1000])
+target_frequency = 0.826
+target_polarity = -0.578
+spectrogram_path = ""
+audio_path = ""
+decoded_text = "No stable decode. The carrier drifts between catalogued bands."
+lore_tags = Array[String](["unknown"])

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EmailData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/emails/EmailData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "how_to_sleep"
+sender = "HQ"
+subject = "How to Sleep"
+category = "Tutorial"
+delivery_day = 3
+delivery_minute = 1200
+body = "Tutorial message: How to Sleep. This placeholder should be replaced with original authored text before release."
+attachments = Array[String]([])

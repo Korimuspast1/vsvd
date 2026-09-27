@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SignalData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/signals/SignalData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "time_capsule"
+display_name = "Time Capsule"
+object_type = "Special"
+quality = "High"
+frequency_band = "High"
+base_price = 20
+rarity = "rare"
+min_day = 1
+unique = true
+altitude_bands = Array[int]([20, 50, 100, 500, 1000])
+target_frequency = 0.516
+target_polarity = -0.322
+spectrogram_path = ""
+audio_path = ""
+decoded_text = "Special-case signal entry. Replace with authored spectrogram/audio."
+lore_tags = Array[String](["special"])

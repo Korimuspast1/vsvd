@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SignalData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/signals/SignalData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "phobos"
+display_name = "Phobos"
+object_type = "Solar System"
+quality = "Average"
+frequency_band = "Average"
+base_price = 5
+rarity = "common"
+min_day = 1
+unique = false
+altitude_bands = Array[int]([10, 20, 50])
+target_frequency = 0.037
+target_polarity = -0.133
+spectrogram_path = ""
+audio_path = ""
+decoded_text = ""
+lore_tags = Array[String]([])

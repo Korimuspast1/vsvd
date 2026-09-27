@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EmailData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/emails/EmailData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "welcome_to_the_ridge"
+sender = "HQ"
+subject = "Welcome to the Ridge"
+category = "Tutorial"
+delivery_day = 1
+delivery_minute = 480
+body = "Tutorial message: Welcome to the Ridge. This placeholder should be replaced with original authored text before release."
+attachments = Array[String]([])
