@@ -32,13 +32,13 @@ func _ready() -> void:
 
 func _capture_mouse() -> void:
     if UIManager.ui_stack.is_empty():
-        Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+        Input.mouse_mode = Input.MOUSE_MODE_CAPTURED as Input.MouseMode
 
 func _input(event: InputEvent) -> void:
     if event is InputEventMouseButton and event.pressed and UIManager.ui_stack.is_empty():
-        Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+        Input.mouse_mode = Input.MOUSE_MODE_CAPTURED as Input.MouseMode
 
-    if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and UIManager.ui_stack.is_empty():
+    if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED as Input.MouseMode and UIManager.ui_stack.is_empty():
         yaw -= event.relative.x * mouse_sensitivity * InputManager.mouse_sensitivity
         var invert_multiplier := -1.0 if InputManager.invert_y else 1.0
         pitch -= event.relative.y * mouse_sensitivity * InputManager.mouse_sensitivity * invert_multiplier

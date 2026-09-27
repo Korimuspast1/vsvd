@@ -11,11 +11,11 @@ var hud_visible := true
 var current_prompt := ""
 
 func _ready() -> void:
-    process_mode = Node.PROCESS_MODE_ALWAYS
+    process_mode = Node.PROCESS_MODE_ALWAYS as Node.ProcessMode
     ui_layer = CanvasLayer.new()
     ui_layer.name = "RuntimeUILayer"
     ui_layer.layer = 100
-    ui_layer.process_mode = Node.PROCESS_MODE_ALWAYS
+    ui_layer.process_mode = Node.PROCESS_MODE_ALWAYS as Node.ProcessMode
     add_child(ui_layer)
     set_mouse_capture(true)
 
@@ -23,7 +23,7 @@ func register_hud(n: Node) -> void:
     hud = n
 
 func set_mouse_capture(captured: bool) -> void:
-    Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if captured else Input.MOUSE_MODE_VISIBLE
+    Input.mouse_mode = Input.MOUSE_MODE_CAPTURED as Input.MouseMode if captured else Input.MOUSE_MODE_VISIBLE as Input.MouseMode
 
 func open_scene(path: String, pause_game: bool = true) -> Node:
     if not ResourceLoader.exists(path):
@@ -33,7 +33,7 @@ func open_scene(path: String, pause_game: bool = true) -> Node:
     if scene == null:
         return null
     var node := scene.instantiate()
-    node.process_mode = Node.PROCESS_MODE_ALWAYS
+    node.process_mode = Node.PROCESS_MODE_ALWAYS as Node.ProcessMode
     ui_layer.add_child(node)
     ui_stack.append(node)
     if pause_game:

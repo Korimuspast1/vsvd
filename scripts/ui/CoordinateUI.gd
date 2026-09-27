@@ -23,7 +23,7 @@ func _ready() -> void:
     scan.pressed.connect(_scan)
     box.add_child(scan)
     info = Label.new()
-    info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+    info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART as TextServer.AutowrapMode
     box.add_child(info)
 
 func _scan() -> void:
