@@ -44,7 +44,7 @@ func open_scene(path: String, pause_game: bool = true) -> Node:
 func close_top() -> void:
     if ui_stack.is_empty():
         return
-    var n := ui_stack.pop_back()
+    var n: Node = ui_stack.pop_back() as Node
     if is_instance_valid(n):
         n.queue_free()
     if ui_stack.is_empty():

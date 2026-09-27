@@ -7,11 +7,11 @@ var current_ambience: AudioStreamPlayer
 func _ready() -> void:
     for b in BUS_NAMES:
         if AudioServer.get_bus_index(b) == -1:
-            var index := AudioServer.bus_count
+            var index := AudioServer.get_bus_count()
             AudioServer.add_bus(index)
             AudioServer.set_bus_name(index, b)
 
-func play_music(path: String, fade: float = 1.0) -> void:
+func play_music(path: String, _fade: float = 1.0) -> void:
     if current_music:
         current_music.queue_free()
     current_music = AudioStreamPlayer.new()
@@ -21,7 +21,7 @@ func play_music(path: String, fade: float = 1.0) -> void:
     if current_music.stream:
         current_music.play()
 
-func stop_music(fade: float = 1.0) -> void:
+func stop_music(_fade: float = 1.0) -> void:
     if current_music:
         current_music.queue_free()
         current_music = null

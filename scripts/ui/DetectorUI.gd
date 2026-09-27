@@ -39,7 +39,7 @@ func _ready() -> void:
     dl.pressed.connect(_download)
     box.add_child(dl)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
     output.text = "Output Data: %.1f%%" % _score()
 
 func _score() -> float:

@@ -118,7 +118,9 @@ func start_new_day()->void:
     var save:=get_node_or_null("/root/SaveManager")
     if save: save.autosave()
 
-func get_time_string()->String: return "%02d:%02d" % [int(minute_of_day/60), minute_of_day%60]
+func get_time_string()->String:
+    var hour := floori(float(minute_of_day) / 60.0)
+    return "%02d:%02d" % [hour, minute_of_day % 60]
 func get_day_time_string()->String: return "Day %d — %s" % [current_day,get_time_string()]
 
 func add_points(amount:int, reason:="")->void:
@@ -129,7 +131,7 @@ func add_points(amount:int, reason:="")->void:
     var ui:=get_node_or_null("/root/UIManager")
     if ui and reason!="": ui.show_notification("%+d pts — %s" % [amount,reason], "success" if amount>=0 else "warning")
 
-func spend_points(amount:int, reason:="")->bool:
+func spend_points(amount:int, _reason:="")->bool:
     if amount<=0: return true
     if points<amount:
         var ui:=get_node_or_null("/root/UIManager")
@@ -141,9 +143,9 @@ func spend_points(amount:int, reason:="")->bool:
     if stats: stats.increment("points_spent",amount)
     return true
 
-func set_need(name:String,value:float)->void:
-    if not needs.has(name): return
-    needs[name]=value if name=="temperature" else clampf(value,0.0,100.0)
+func set_need(need_name:String,value:float)->void:
+    if not needs.has(need_name): return
+    needs[need_name]=value if need_name=="temperature" else clampf(value,0.0,100.0)
     needs_changed.emit(needs.duplicate(true))
 func add_stamina(delta:float)->void: set_need("stamina",float(needs.stamina)+delta)
 func can_sprint()->bool: return float(needs.stamina)>10.0 and get_inventory_weight()<=get_weight_limit()
@@ -156,7 +158,7 @@ func apply_damage(amount:float,cause:="damage")->void:
     if ui: ui.flash_damage(amount)
     if float(needs.health)<=0.0: die(cause)
 func heal(amount:float)->void: set_need("health",float(needs.health)+amount)
-func eat(nutrition:float,item_name:="food")->void: set_need("hunger",float(needs.hunger)+nutrition)
+func eat(nutrition:float,_item_name:="food")->void: set_need("hunger",float(needs.hunger)+nutrition)
 func sleep_hours(hours:float)->void:
     set_need("sleep",float(needs.sleep)+hours*12.5)
     advance_time(hours*60.0)
@@ -183,11 +185,21 @@ func add_item(item_id:String,count:int=1,metadata:Dictionary={})->bool:
     inventory_changed.emit()
     return true
 func remove_item(item_id:String,count:int=1)->bool:
-    for i in range(inventory.size()):
-        if inventory[i].id==item_id:
-            inventory.remove_at(i)
-            inventory_changed.emit()
-            return true
+    var remaining := count
+    for i in range(inventory.size() - 1, -1, -1):
+        if inventory[i].id == item_id:
+            var slot_count := int(inventory[i].get("count", 1))
+            var removed := mini(slot_count, remaining)
+            slot_count -= removed
+            remaining -= removed
+            if slot_count <= 0:
+                inventory.remove_at(i)
+            else:
+                inventory[i]["count"] = slot_count
+            if remaining <= 0:
+                inventory_changed.emit()
+                return true
+    inventory_changed.emit()
     return false
 func has_item(item_id:String,count:int=1)->bool:
     var total:=0

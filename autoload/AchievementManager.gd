@@ -30,7 +30,11 @@ func unlock(id: String) -> void:
     unlocked[id] = Time.get_unix_time_from_system()
     achievement_unlocked.emit(id)
     if UIManager:
-        var label := achievements[id].display_name if achievements.has(id) else id
+        var label: String = id
+        if achievements.has(id):
+            var data: AchievementData = achievements[id] as AchievementData
+            if data:
+                label = data.display_name
         UIManager.show_notification("Achievement: %s" % label, "success")
 
 func is_unlocked(id: String) -> bool:

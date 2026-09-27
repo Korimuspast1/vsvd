@@ -42,7 +42,8 @@ func refresh() -> void:
         elif bool(info.get("corrupt", false)):
             label.text = "Slot %d — Corrupt" % slot
         else:
-            label.text = "Slot %d — Day %d %02d:%02d — %d pts" % [slot, int(info.day), int(info.minute / 60), int(info.minute) % 60, int(info.points)]
+            var hour := floori(float(info.minute) / 60.0)
+            label.text = "Slot %d — Day %d %02d:%02d — %d pts" % [slot, int(info.day), hour, int(info.minute) % 60, int(info.points)]
         row.add_child(label)
         var save_button := Button.new()
         save_button.text = "Save"

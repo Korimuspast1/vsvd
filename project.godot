@@ -38,3 +38,10 @@ environment/defaults/default_clear_color=Color(0.025, 0.028, 0.032, 1)
 
 [physics]
 common/physics_ticks_per_second=60
+
+[debug]
+gdscript/warnings/treat_warnings_as_errors=false
+gdscript/warnings/inference_on_variant=0
+gdscript/warnings/integer_division=0
+gdscript/warnings/unused_parameter=0
+gdscript/warnings/shadowed_variable=0

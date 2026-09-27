@@ -8,7 +8,7 @@ class_name EntityBase
 var health:=100.0
 var target:Node3D
 func _ready()->void: health=max_health; add_to_group("entities")
-func _physics_process(delta:float)->void:
+func _physics_process(_delta:float)->void:
     if behavior=="chase":
         if target==null: target=get_tree().get_first_node_in_group("player") as Node3D
         if target:

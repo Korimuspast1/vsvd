@@ -3,7 +3,7 @@ class_name PlayerInteraction
 var current_target:Node
 func _ready()->void:
     enabled=true; collide_with_areas=true; collide_with_bodies=true
-func _process(delta:float)->void:
+func _process(_delta:float)->void:
     force_raycast_update()
     current_target=get_collider() as Node if is_colliding() else null
     if current_target and current_target.has_method("get_interaction_prompt"):

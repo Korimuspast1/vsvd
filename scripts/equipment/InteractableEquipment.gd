@@ -8,5 +8,5 @@ class_name InteractableEquipment
 func get_interaction_prompt() -> String:
     return "%s %s [%s]" % [interaction_label, display_name, InputManager.get_action_label("interact")]
 
-func interact(player: Node) -> void:
+func interact(_player: Node) -> void:
     UIManager.show_notification("%s has no configured action." % display_name, "info")
