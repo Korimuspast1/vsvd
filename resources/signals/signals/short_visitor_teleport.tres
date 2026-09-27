@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SignalData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/signals/SignalData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "short_visitor_teleport"
+display_name = "Short Visitor Teleport"
+object_type = "Special"
+quality = "High"
+frequency_band = "Very High"
+base_price = 50
+rarity = "legendary"
+min_day = 30
+unique = true
+altitude_bands = Array[int]([20, 50, 100, 500, 1000])
+target_frequency = 0.660
+target_polarity = -0.714
+spectrogram_path = ""
+audio_path = ""
+decoded_text = "Special-case signal entry. Replace with authored spectrogram/audio."
+lore_tags = Array[String](["special"])

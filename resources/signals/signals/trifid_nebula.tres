@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SignalData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/signals/SignalData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "trifid_nebula"
+display_name = "Trifid Nebula"
+object_type = "Nebula"
+quality = "High"
+frequency_band = "High"
+base_price = 15
+rarity = "rare"
+min_day = 1
+unique = false
+altitude_bands = Array[int]([500, 1000])
+target_frequency = 0.220
+target_polarity = -0.546
+spectrogram_path = ""
+audio_path = ""
+decoded_text = ""
+lore_tags = Array[String]([])

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SignalData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/signals/SignalData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "visitor_coordinates"
+display_name = "Visitor Coordinates"
+object_type = "Visitor Signal"
+quality = "High"
+frequency_band = "High"
+base_price = 25
+rarity = "very_rare"
+min_day = 10
+unique = false
+altitude_bands = Array[int]([100, 500, 1000])
+target_frequency = 0.725
+target_polarity = 0.113
+spectrogram_path = ""
+audio_path = ""
+decoded_text = "A structured transmission repeats in a language-like rhythm."
+lore_tags = Array[String](["visitor"])

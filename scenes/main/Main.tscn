@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/world/Observatory.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="3"]
+
+[node name="Main" type="Node3D"]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Observatory" parent="World" instance=ExtResource("2")]
+
+[node name="Player" parent="World" instance=ExtResource("1")]
+position = Vector3(0, 1, 2)
+
+[node name="Sun" type="DirectionalLight3D" parent="World"]
+rotation_degrees = Vector3(-45, 45, 0)
+light_energy = 1.5
+
+[node name="HUD" parent="." instance=ExtResource("3")]

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EmailData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/emails/EmailData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "blackout_warning"
+sender = "Facilities"
+subject = "Power Fluctuations"
+category = "Warning"
+delivery_day = 4
+delivery_minute = 0
+body = "Power instability is expected after midnight. Know where the breaker panel is."
+attachments = Array[String]([])

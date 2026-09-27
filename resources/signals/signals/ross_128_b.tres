@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SignalData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/signals/SignalData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ross_128_b"
+display_name = "Ross 128 b"
+object_type = "Exoplanet"
+quality = "High"
+frequency_band = "High"
+base_price = 15
+rarity = "uncommon"
+min_day = 1
+unique = false
+altitude_bands = Array[int]([50, 100])
+target_frequency = 0.168
+target_polarity = -0.766
+spectrogram_path = ""
+audio_path = ""
+decoded_text = ""
+lore_tags = Array[String]([])

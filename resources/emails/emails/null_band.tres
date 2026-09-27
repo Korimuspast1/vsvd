@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EmailData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/emails/EmailData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "null_band"
+sender = "Research"
+subject = "Null-Band Warning"
+category = "Warning"
+delivery_day = 20
+delivery_minute = 720
+body = "Do not listen to null-band audio at high volume. Report screen distortion immediately."
+attachments = Array[String]([])

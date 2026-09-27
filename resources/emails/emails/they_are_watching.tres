@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EmailData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/emails/EmailData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "they_are_watching"
+sender = "HQ"
+subject = "They Are Watching"
+category = "Cryptic"
+delivery_day = 7
+delivery_minute = 213
+body = "Cryptic message: They Are Watching. This placeholder should be replaced with original authored text before release."
+attachments = Array[String]([])

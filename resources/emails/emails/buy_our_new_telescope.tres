@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EmailData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/emails/EmailData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "buy_our_new_telescope"
+sender = "HQ"
+subject = "Buy Our New Telescope!"
+category = "Spam"
+delivery_day = 2
+delivery_minute = 900
+body = "Spam message: Buy Our New Telescope!. This placeholder should be replaced with original authored text before release."
+attachments = Array[String]([])

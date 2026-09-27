@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SignalData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/signals/SignalData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "stag_whisper"
+display_name = "Stag Whisper"
+object_type = "Stag Anomaly"
+quality = "Low"
+frequency_band = "Low"
+base_price = 5
+rarity = "very_rare"
+min_day = 15
+unique = false
+altitude_bands = Array[int]([10, 20, 50])
+target_frequency = 0.562
+target_polarity = 0.520
+spectrogram_path = ""
+audio_path = ""
+decoded_text = "A sub-audible animal call is buried below the noise floor."
+lore_tags = Array[String](["anomaly", "stag"])

@@ -1,0 +1,47 @@
+config_version=5
+
+[application]
+config/name="VSVd - Void Signal Vigil"
+run/main_scene="res://scenes/main/Main.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+GameStateManager="*res://autoload/GameStateManager.gd"
+SaveManager="*res://autoload/SaveManager.gd"
+EventManager="*res://autoload/EventManager.gd"
+SignalDatabase="*res://autoload/SignalDatabase.gd"
+AudioManager="*res://autoload/AudioManager.gd"
+InputManager="*res://autoload/InputManager.gd"
+UIManager="*res://autoload/UIManager.gd"
+DialogueManager="*res://autoload/DialogueManager.gd"
+SettingsManager="*res://autoload/SettingsManager.gd"
+AnomalyManager="*res://autoload/AnomalyManager.gd"
+EmailManager="*res://autoload/EmailManager.gd"
+QuestManager="*res://autoload/QuestManager.gd"
+TutorialManager="*res://autoload/TutorialManager.gd"
+AchievementManager="*res://autoload/AchievementManager.gd"
+StatisticsSystem="*res://autoload/StatisticsSystem.gd"
+ModAPI="*res://autoload/ModAPI.gd"
+
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[rendering]
+renderer/rendering_method="forward_plus"
+textures/canvas_textures/default_texture_filter=0
+textures/default_filters/use_nearest_mipmap_filter=true
+environment/defaults/default_clear_color=Color(0.025, 0.028, 0.032, 1)
+
+[physics]
+common/physics_ticks_per_second=60
+
+[debug]
+gdscript/warnings/treat_warnings_as_errors=false
+gdscript/warnings/inference_on_variant=0
+gdscript/warnings/integer_division=0
+gdscript/warnings/unused_parameter=0
+gdscript/warnings/shadowed_variable=0

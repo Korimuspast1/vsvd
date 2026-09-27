@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EmailData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/emails/EmailData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "visitor_band"
+sender = "Research"
+subject = "Unusual Visitor-Band Carriers"
+category = "Story"
+delivery_day = 6
+delivery_minute = 1320
+body = "If a structured nonhuman carrier appears, process it fully and archive the tape."
+attachments = Array[String]([])

@@ -1,0 +1,3 @@
+[gd_scene format=3]
+[node name="DifficultySelect" type="Control"]
+process_mode = 3

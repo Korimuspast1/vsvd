@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EmailData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/emails/EmailData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "hot_static_in_your_area"
+sender = "HQ"
+subject = "Hot Static In Your Area!"
+category = "Spam"
+delivery_day = 16
+delivery_minute = 900
+body = "Spam message: Hot Static In Your Area!. This placeholder should be replaced with original authored text before release."
+attachments = Array[String]([])

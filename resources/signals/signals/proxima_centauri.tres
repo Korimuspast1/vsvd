@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SignalData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/signals/SignalData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "proxima_centauri"
+display_name = "Proxima Centauri"
+object_type = "Star"
+quality = "Average"
+frequency_band = "Average"
+base_price = 10
+rarity = "uncommon"
+min_day = 1
+unique = false
+altitude_bands = Array[int]([50, 100])
+target_frequency = 0.953
+target_polarity = 0.381
+spectrogram_path = ""
+audio_path = ""
+decoded_text = ""
+lore_tags = Array[String]([])

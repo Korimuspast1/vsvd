@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EmailData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/emails/EmailData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "classified_information"
+sender = "HQ"
+subject = "Classified Information"
+category = "Story"
+delivery_day = 25
+delivery_minute = 480
+body = "Story message: Classified Information. This placeholder should be replaced with original authored text before release."
+attachments = Array[String]([])
