@@ -2,6 +2,7 @@
 telegram.properties
 vsvd-signing.properties
 signing/
+private/
 
 # Android / IDE local outputs for the VSVD wrapper project.
 .gradle/
