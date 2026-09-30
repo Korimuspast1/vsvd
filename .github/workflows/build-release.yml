@@ -32,7 +32,14 @@ jobs:
           export ANDROID_SDK_ROOT="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
           SDKMANAGER="$(find "$ANDROID_SDK_ROOT/cmdline-tools" -path '*/bin/sdkmanager' -type f | sort -V | tail -1)"
           test -n "$SDKMANAGER"
+          # sdkmanager exits after consuming all licenses; `yes` then receives SIGPIPE.
+          # Temporarily disable pipefail so that the sdkmanager exit status is checked,
+          # rather than `yes`'s expected 141 status.
+          set +o pipefail
           yes | "$SDKMANAGER" --licenses >/dev/null
+          license_status=$?
+          set -o pipefail
+          test "$license_status" -eq 0
           "$SDKMANAGER" "platforms;android-36" "build-tools;36.0.0" "ndk;27.2.12479018" "cmake;3.22.1"
 
       - name: Restore private local build configuration
