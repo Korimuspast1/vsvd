@@ -1,0 +1,19 @@
+# Android / Gradle
+.gradle/
+build/
+**/build/
+local.properties
+*.iml
+.idea/
+
+# Telegram application credentials and local native library copies
+telegram.properties
+app/src/main/assets/telegram.properties
+app/libs/tdlib*.aar
+app/libs/tdlib/
+
+# Backend secrets and local state (for the later Control Plane)
+.env
+.env.*
+!.env.example
+control-plane/data/

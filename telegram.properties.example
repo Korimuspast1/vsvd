@@ -1,0 +1,4 @@
+# Copy to telegram.properties (ignored by Git) only after registering your own
+# application at https://my.telegram.org. Do not use keys taken from another app.
+TELEGRAM_API_ID=
+TELEGRAM_API_HASH=
