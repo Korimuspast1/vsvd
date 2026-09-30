@@ -57,10 +57,14 @@ Release-задача теперь намеренно остановится, е�
 ```bash
 cd .. # вернуться в корень VSVD
 mkdir -p signing
-keytool -genkeypair -keystore signing/vsvd-release.keystore -alias vsvd \
-  -keyalg RSA -keysize 4096 -validity 10000
+# Создаёт PKCS12 signing key; введённый пароль запиши только в локальный файл.
+openssl req -x509 -newkey rsa:4096 -keyout signing/vsvd-release.key.pem \
+  -out signing/vsvd-release.cert.pem -days 3650
+openssl pkcs12 -export -out signing/vsvd-release.p12 -name vsvd \
+  -inkey signing/vsvd-release.key.pem -in signing/vsvd-release.cert.pem
+rm signing/vsvd-release.key.pem signing/vsvd-release.cert.pem
 cp vsvd-signing.properties.example vsvd-signing.properties
-# Заполни пароль keystore и ключа в локальном vsvd-signing.properties.
+# Заполни пароль хранилища/ключа в локальном vsvd-signing.properties.
 
 # Или одной командой из корня VSVD:
 ./scripts/build-release-apk.sh
@@ -71,6 +75,8 @@ cd upstream/telegram-android
 ```
 
 Полученный APK нужно подписать только собственным ключом VSVD и проверить на устройстве до публикации. Нельзя публиковать APK с демонстрационным keystore и `google-services.json`, которые есть в upstream как заглушки.
+
+Также добавлен workflow `.github/workflows/build-release.yml` для GitHub Actions. Он ждёт три repository secrets: `VSVD_TELEGRAM_PROPERTIES_B64`, `VSVD_SIGNING_PROPERTIES_B64` и `VSVD_RELEASE_KEYSTORE_B64`. Они содержат base64 локальных файлов и никогда не должны коммититься.
 
 ## Проверки перед распространением
 
