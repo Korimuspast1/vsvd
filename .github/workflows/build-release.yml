@@ -43,6 +43,7 @@ jobs:
           "$SDKMANAGER" "platforms;android-36" "build-tools;36.0.0" "ndk;27.2.12479018" "cmake;3.22.1"
 
       - name: Restore private local build configuration
+        shell: bash
         env:
           TELEGRAM_PROPERTIES_B64: ${{ secrets.VSVD_TELEGRAM_PROPERTIES_B64 }}
           SIGNING_PROPERTIES_B64: ${{ secrets.VSVD_SIGNING_PROPERTIES_B64 }}
@@ -50,14 +51,53 @@ jobs:
         run: |
           set -euo pipefail
           umask 077
-          test -n "$TELEGRAM_PROPERTIES_B64"
-          test -n "$SIGNING_PROPERTIES_B64"
-          test -n "$KEYSTORE_B64"
-          printf '%s' "$TELEGRAM_PROPERTIES_B64" | base64 --decode > telegram.properties
-          printf '%s' "$SIGNING_PROPERTIES_B64" | base64 --decode > vsvd-signing.properties
+
+          fail_secret() {
+            echo "::error title=VSVD Actions secret configuration::$1" >&2
+            exit 1
+          }
+          restore_b64() {
+            local secret_name="$1"
+            local secret_value="$2"
+            local target="$3"
+            [ -n "$secret_value" ] || fail_secret "$secret_name is missing or unavailable to this workflow. Create it as a repository Actions secret."
+            if ! printf '%s' "$secret_value" | base64 --decode > "$target"; then
+              rm -f "$target"
+              fail_secret "$secret_name is not valid base64. Replace it with a single-line base64 value."
+            fi
+            [ -s "$target" ] || fail_secret "$secret_name decoded to an empty file."
+          }
+          require_property() {
+            local file="$1"
+            local key="$2"
+            local value
+            value="$(sed -n "s/^${key}=//p" "$file" | head -n 1)"
+            [ -n "$value" ] || fail_secret "$file is missing required property $key."
+            printf '%s' "$value"
+          }
+
+          restore_b64 "VSVD_TELEGRAM_PROPERTIES_B64" "$TELEGRAM_PROPERTIES_B64" telegram.properties
+          restore_b64 "VSVD_SIGNING_PROPERTIES_B64" "$SIGNING_PROPERTIES_B64" vsvd-signing.properties
           mkdir -p signing
-          printf '%s' "$KEYSTORE_B64" | base64 --decode > signing/vsvd-release.p12
+          restore_b64 "VSVD_RELEASE_KEYSTORE_B64" "$KEYSTORE_B64" signing/vsvd-release.p12
           chmod 600 telegram.properties vsvd-signing.properties signing/vsvd-release.p12
+
+          telegram_api_id="$(require_property telegram.properties TELEGRAM_API_ID)"
+          case "$telegram_api_id" in
+            *[!0-9]*|'0') fail_secret "telegram.properties has an invalid TELEGRAM_API_ID." ;;
+          esac
+          require_property telegram.properties TELEGRAM_API_HASH >/dev/null
+          store_type="$(require_property vsvd-signing.properties VSVD_RELEASE_STORE_TYPE)"
+          store_password="$(require_property vsvd-signing.properties VSVD_RELEASE_STORE_PASSWORD)"
+          key_alias="$(require_property vsvd-signing.properties VSVD_RELEASE_KEY_ALIAS)"
+          require_property vsvd-signing.properties VSVD_RELEASE_KEY_PASSWORD >/dev/null
+          case "$store_type" in
+            JKS|PKCS12) ;;
+            *) fail_secret "vsvd-signing.properties has unsupported VSVD_RELEASE_STORE_TYPE: $store_type." ;;
+          esac
+          keytool -list -keystore signing/vsvd-release.p12 -storetype "$store_type" \
+            -storepass "$store_password" -alias "$key_alias" >/dev/null 2>&1 \
+            || fail_secret "VSVD_RELEASE_KEYSTORE_B64 or vsvd-signing.properties does not open the configured signing key."
 
       - name: Build signed release APK
         run: |
