@@ -1,18 +1,13 @@
-# Android / Gradle
+# Local Telegram API credentials. Never commit these values.
+telegram.properties
+
+# Android / IDE local outputs for the VSVD wrapper project.
 .gradle/
 build/
-**/build/
-local.properties
-*.iml
 .idea/
+*.iml
 
-# Telegram application credentials and local native library copies
-telegram.properties
-app/src/main/assets/telegram.properties
-app/libs/tdlib*.aar
-app/libs/tdlib/
-
-# Backend secrets and local state (for the later Control Plane)
+# Future Control Plane secrets and local state.
 .env
 .env.*
 !.env.example

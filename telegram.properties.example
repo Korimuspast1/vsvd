@@ -1,4 +1,8 @@
-# Copy to telegram.properties (ignored by Git) only after registering your own
-# application at https://my.telegram.org. Do not use keys taken from another app.
+# Local Telegram API credentials for VSVD.
+# Copy this file to telegram.properties in the repository root. It is ignored by
+# Git and read only when the VSVD patch is applied to the upstream source.
+#
+# Register a separate application at https://my.telegram.org. Never reuse an
+# official Telegram application's credentials or commit your own values.
 TELEGRAM_API_ID=
 TELEGRAM_API_HASH=
