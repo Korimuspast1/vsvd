@@ -1,5 +1,7 @@
-# Local Telegram API credentials. Never commit these values.
+# Local Telegram API credentials and signing material. Never commit these values.
 telegram.properties
+vsvd-signing.properties
+signing/
 
 # Android / IDE local outputs for the VSVD wrapper project.
 .gradle/

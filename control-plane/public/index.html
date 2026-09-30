@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>VSVD Control Plane</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">VSVD CONTROL PLANE</p>
+        <h1>Бейджи и управление клиентом</h1>
+      </div>
+      <div class="connection"><span class="dot"></span><span id="server-status">Проверка API…</span></div>
+    </header>
+
+    <section id="notice" class="notice" hidden></section>
+
+    <section id="auth-card" class="auth-card panel" aria-live="polite">
+      <div id="bootstrap-view" hidden>
+        <p class="eyebrow">ПЕРВЫЙ АДМИНИСТРАТОР</p>
+        <h2>Создай защищённый доступ</h2>
+        <p>Этот режим разрешён только для локальной разработки. На production-сервере используй <code>VSVD_BOOTSTRAP_TOKEN</code>.</p>
+        <form id="bootstrap-form" class="form-grid">
+          <label>Логин<input name="username" autocomplete="username" pattern="[A-Za-z0-9._-]{3,32}" required></label>
+          <label>Пароль <small>минимум 12 символов</small><input name="password" type="password" autocomplete="new-password" minlength="12" required></label>
+          <button type="submit">Создать администратора</button>
+        </form>
+      </div>
+      <div id="login-view" hidden>
+        <p class="eyebrow">ЗАЩИЩЁННЫЙ ВХОД</p>
+        <h2>Админка VSVD</h2>
+        <form id="login-form" class="form-grid">
+          <label>Логин<input name="username" autocomplete="username" required></label>
+          <label>Пароль<input name="password" type="password" autocomplete="current-password" required></label>
+          <button type="submit">Войти</button>
+        </form>
+      </div>
+      <div id="bootstrap-disabled" hidden>
+        <h2>Нужна инициализация</h2>
+        <p>Сервер не разрешает открытое создание первого администратора. Добавь <code>VSVD_BOOTSTRAP_TOKEN</code> в окружение сервера и выполни защищённую первичную настройку.</p>
+      </div>
+    </section>
+
+    <section id="dashboard" hidden>
+      <div class="dashboard-head panel">
+        <div>
+          <p class="eyebrow">АДМИНИСТРАТОР</p>
+          <h2 id="admin-name">—</h2>
+        </div>
+        <button id="logout" class="secondary">Выйти</button>
+      </div>
+
+      <div class="facts">
+        <article class="fact panel"><span>Источник данных</span><strong>VSVD Control Plane</strong><p>Шаблоны и выдачи бейджей.</p></article>
+        <article class="fact panel"><span>Не хранится здесь</span><strong>Telegram-чаты</strong><p>Сообщения, медиа, коды и сессии не проходят через API.</p></article>
+        <article class="fact panel"><span>Публичный endpoint</span><code id="public-endpoint">/api/v1/badges/users/{id}</code><p>Клиент получает только активные бейджи.</p></article>
+      </div>
+
+      <div class="dashboard-grid">
+        <section class="panel">
+          <p class="eyebrow">КАТАЛОГ</p>
+          <h2>Создать шаблон бейджа</h2>
+          <form id="badge-form" class="form-grid compact">
+            <label>Название<input name="label" maxlength="20" placeholder="Основатель" required></label>
+            <label>Slug <small>латиница, уникальный</small><input name="slug" pattern="[a-z][a-z0-9.-]{1,63}" placeholder="founder" required></label>
+            <div class="color-row">
+              <label>Фон<input name="background" type="color" value="#234d79" required></label>
+              <label>Текст<input name="text" type="color" value="#ffffff" required></label>
+            </div>
+            <fieldset>
+              <legend>Где показывать</legend>
+              <label class="check"><input type="checkbox" name="scope" value="PROFILE" checked> Профиль</label>
+              <label class="check"><input type="checkbox" name="scope" value="USER_LIST" checked> Списки пользователей</label>
+              <label class="check"><input type="checkbox" name="scope" value="MESSAGE_HEADER"> Заголовок сообщения</label>
+            </fieldset>
+            <button type="submit">Создать шаблон</button>
+          </form>
+          <div id="badge-list" class="badge-list"></div>
+        </section>
+
+        <section class="panel">
+          <p class="eyebrow">ВЫДАЧА</p>
+          <h2>Выдать по Telegram User ID</h2>
+          <form id="grant-form" class="form-grid compact">
+            <label>Telegram User ID<input name="telegramUserId" inputmode="numeric" pattern="[1-9][0-9]{0,18}" placeholder="123456789" required></label>
+            <label>Шаблон<select name="badgeId" id="grant-badge" required><option value="">Сначала создай бейдж</option></select></label>
+            <label>Срок действия <small>необязательно</small><input name="expiresAt" type="datetime-local"></label>
+            <label>Причина <small>видна только аудиторам</small><input name="reason" maxlength="240" placeholder="Ранний тестер"></label>
+            <button type="submit">Выдать бейдж</button>
+          </form>
+          <div class="lookup">
+            <label>Показать выдачи User ID<input id="lookup-user-id" inputmode="numeric" placeholder="123456789"></label>
+            <button id="lookup-grants" class="secondary">Найти</button>
+          </div>
+          <div id="grant-list" class="grant-list empty">Введи Telegram User ID, чтобы увидеть историю выдач.</div>
+        </section>
+      </div>
+
+      <section class="panel audit-panel">
+        <p class="eyebrow">АУДИТ</p>
+        <h2>Последние действия</h2>
+        <div id="audit-list" class="audit-list"></div>
+      </section>
+    </section>
+  </main>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

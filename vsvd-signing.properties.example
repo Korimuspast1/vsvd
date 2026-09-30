@@ -1,0 +1,6 @@
+# Copy to vsvd-signing.properties (ignored by Git) before a release build.
+# The keystore path is relative to the VSVD repository root.
+VSVD_RELEASE_STORE_FILE=signing/vsvd-release.keystore
+VSVD_RELEASE_STORE_PASSWORD=
+VSVD_RELEASE_KEY_ALIAS=vsvd
+VSVD_RELEASE_KEY_PASSWORD=

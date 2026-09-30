@@ -1,0 +1,15 @@
+{
+  "name": "vsvd-control-plane",
+  "version": "0.1.0",
+  "private": true,
+  "description": "VSVD badges, plugin catalog and administrative control plane",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "NODE_ENV=development VSVD_ALLOW_INSECURE_FIRST_ADMIN=1 VSVD_COOKIE_SECURE=0 node server.mjs",
+    "check": "node --check server.mjs && node --check public/app.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

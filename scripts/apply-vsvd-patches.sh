@@ -24,6 +24,7 @@ fi
 # A zero-context patch avoids carrying upstream trailing whitespace into this
 # repository, so detect its explicit VSVD marker instead of reverse-applying it.
 if [ -f "$UPSTREAM/TMessagesProj/src/main/java/org/telegram/vsvd/VsvdBadge.java" ] && \
+   [ -f "$UPSTREAM/TMessagesProj/src/main/java/org/telegram/ui/VsvdClientSettingsActivity.java" ] && \
    grep -q "BuildConfig.VSVD_TELEGRAM_API_ID" "$UPSTREAM/TMessagesProj/src/main/java/org/telegram/messenger/BuildVars.java"; then
     echo "VSVD patches are already applied."
     exit 0

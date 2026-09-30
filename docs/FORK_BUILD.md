@@ -50,7 +50,27 @@ cd upstream/telegram-android
 
 APK создаётся в каталоге модуля `TMessagesProj_App/build/outputs/`. Точная вложенная папка зависит от версии Android Gradle Plugin и variant.
 
-Для будущего release-процесса надо создать отдельный upload/signing key и Firebase-конфигурацию VSVD. Нельзя публиковать APK с демонстрационным keystore и `google-services.json`, которые есть в upstream как заглушки.
+## Release APK
+
+Release-задача теперь намеренно остановится, если нет отдельного ключа VSVD — sample keystore из upstream не используется для релиза.
+
+```bash
+cd .. # вернуться в корень VSVD
+mkdir -p signing
+keytool -genkeypair -keystore signing/vsvd-release.keystore -alias vsvd \
+  -keyalg RSA -keysize 4096 -validity 10000
+cp vsvd-signing.properties.example vsvd-signing.properties
+# Заполни пароль keystore и ключа в локальном vsvd-signing.properties.
+
+# Или одной командой из корня VSVD:
+./scripts/build-release-apk.sh
+
+# Эквивалентная Gradle-задача:
+cd upstream/telegram-android
+./gradlew :TMessagesProj_App:assembleAfatRelease
+```
+
+Полученный APK нужно подписать только собственным ключом VSVD и проверить на устройстве до публикации. Нельзя публиковать APK с демонстрационным keystore и `google-services.json`, которые есть в upstream как заглушки.
 
 ## Проверки перед распространением
 
